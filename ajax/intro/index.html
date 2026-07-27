@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sync vs. Async demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    button { font-size: 1.1rem; padding: 0.5rem 1rem; margin-right: 1rem; }
+    #value { font-size: 2rem; font-weight: bold; }
+    p { max-width: 40rem; color: #444; }    
+    .indicators { display: flex; gap: 2rem; margin-top: 1rem; }
+    .indicator { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .indicator span { font-size: 0.85rem; color: #666; text-align: center; }
+    .spinner {
+      width: 2rem;
+      height: 2rem;
+      border: 0.3rem solid #ddd;
+      border-top-color: #333;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .bar-track {
+      width: 8rem;
+      height: 0.6rem;
+      background: #ddd;
+      border-radius: 0.3rem;
+      overflow: hidden;
+    }
+    .bar-fill {
+      width: 30%;
+      height: 100%;
+      background: #333;
+      border-radius: 0.3rem;
+      animation: slide 0.8s linear infinite alternate;
+    }
+    @keyframes slide {
+      to { margin-left: 70%; }
+    }
+  </style>
+</head>
+<body>
+  <button id="btn-inc">increment</button>
+  <button id="btn-inc-long">incrementLong</button>
+  <button id="btn-inc-long-async">incrementLongAsync</button>
+
+  <div class="indicators">
+    <div class="indicator">
+      <div class="spinner"></div>
+      <span>transform<br>(compositor thread)</span>
+    </div>
+    <div class="indicator">
+      <div class="bar-track"><div class="bar-fill"></div></div>
+      <span>margin-left<br>(main thread)</span>
+    </div>
+  </div>
+
+  <p>Counter: <span id="value">0</span></p>
+
+  <script src="index.js" type="module"></script>
+</body>
+</html>
