@@ -26,29 +26,28 @@ const state = { loading: false };
 
 function login(username, password) {
     state.loading = true;
-    let userRef;
-    let profileRef;
-    let interestsRef;
+    const result = {};
 
     return loginWithPassword(username, password)
         .then((user) => {
-            userRef = user;
+            result.user = user;
             return loadProfile(user.id);
         })
         .then((profile) => {
-            profileRef = profile;
-            return profile.has_interests ? loadInterests(userRef.id) : null;
+            result.profile = profile;
+            return profile.has_interests ? loadInterests(result.user.id) : null;
         })
         .then((interests) => {
-            interestsRef = interests;
-            return loadFriends(userRef.id);
+            result.interests = interests;
+            return loadFriends(result.user.id);
         })
         .then((friends) => {
-            return { profile: profileRef, interests: interestsRef, friends };
+            result.friends = friends;
+            return result;
         })
         .finally(() => {
             state.loading = false;
-        });
+        });-
 }
 
 login("jane", "secret").then((result) => {

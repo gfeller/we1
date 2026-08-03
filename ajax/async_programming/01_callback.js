@@ -1,4 +1,4 @@
-function sayHi(){
+/*function sayHi(){
     console.log("hi");
 }
 
@@ -21,4 +21,29 @@ function createTrensatction(amount, from, to, cb){
 const from = "100001"
 const to = "100002"
 
-createTransaction()
+createTransaction()*/
+
+function wakeUpCall(){
+    console.log("ring ring ring")
+}
+
+//setTimeout(() => wakeUpCall(), 1000)
+
+
+function wakeUpCall(){
+    console.log("ring ring ring")
+}
+
+function snooze(fn){
+    setTimeout(() => fn(), 1000)
+}
+
+setTimeout(
+    () => snooze(
+        () => snooze(
+             () => snooze(
+                () => wakeUpCall()
+            )
+        )
+    )
+, 1000)
