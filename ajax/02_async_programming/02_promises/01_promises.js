@@ -3,7 +3,7 @@ function wakeUpCall() {
 }
 
 function snooze() {
-    return createTimer(500).then(() => console.log('snoozed'));
+    return createTimer(1000).then(() => console.log('snoozed'));
 }
 
 function fakeWait(till) {
