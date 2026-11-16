@@ -16,7 +16,7 @@ const server = http.createServer();
 
 
 server.listen(3333 /*port*/, "127.0.0.1" /*hostname*/, () => {
-    console.log(`Server running at http:/127.0.0.1:3333`);
+    console.log(`Server running at`, "http:/127.0.0.1:3333");
 });
 
 // step 1:
